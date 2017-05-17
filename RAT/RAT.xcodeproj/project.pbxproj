@@ -12,6 +12,7 @@
 		5D8C7AEA1ECCBBD60095E6DC /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C7AE91ECCBBD60095E6DC /* LocationController.swift */; };
 		5D8C7AEC1ECCBE7E0095E6DC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D8C7AEB1ECCBE7E0095E6DC /* CoreLocation.framework */; };
 		5D8C7AEE1ECCC5DC0095E6DC /* GalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C7AED1ECCC5DC0095E6DC /* GalleryController.swift */; };
+		5D8C7AF01ECCD0AC0095E6DC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D8C7AEF1ECCD0AC0095E6DC /* Launch Screen.storyboard */; };
 		5DAB0C4D1EB3300600AC1F77 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */; };
 		5DAB0C4F1EB3304600AC1F77 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB0C4E1EB3304600AC1F77 /* MapView.swift */; };
 		ED22BB7B1E9F9FCE0084320F /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED22BB7A1E9F9FCE0084320F /* ServiceViewController.swift */; };
@@ -46,6 +47,7 @@
 		5D8C7AE91ECCBBD60095E6DC /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		5D8C7AEB1ECCBE7E0095E6DC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5D8C7AED1ECCC5DC0095E6DC /* GalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryController.swift; sourceTree = "<group>"; };
+		5D8C7AEF1ECCD0AC0095E6DC /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5DAB0C4E1EB3304600AC1F77 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E0D24D3F6E7B37CE9B38B235 /* Pods-RAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAT.release.xcconfig"; path = "Pods/Target Support Files/Pods-RAT/Pods-RAT.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		EDAFF5E51E7B3C620069F42E = {
 			isa = PBXGroup;
 			children = (
+				5D8C7AEF1ECCD0AC0095E6DC /* Launch Screen.storyboard */,
 				EDAFF5F01E7B3C630069F42E /* RAT */,
 				EDAFF5EF1E7B3C630069F42E /* Products */,
 				95E17484A813075AD140E2DE /* Pods */,
@@ -248,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D8C7AF01ECCD0AC0095E6DC /* Launch Screen.storyboard in Resources */,
 				5D4A18671EBCBA9400678C91 /* Assets.xcassets in Resources */,
 				EDAFF5F71E7B3C630069F42E /* Main.storyboard in Resources */,
 			);
