@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		0A30D1A4CE1402B47963B8C8 /* Pods_RAT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADC1D6078B2619FCD9EB281 /* Pods_RAT.framework */; };
 		5D4A18671EBCBA9400678C91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4A18661EBCBA9400678C91 /* Assets.xcassets */; };
+		5D8C7AEA1ECCBBD60095E6DC /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C7AE91ECCBBD60095E6DC /* LocationController.swift */; };
+		5D8C7AEC1ECCBE7E0095E6DC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D8C7AEB1ECCBE7E0095E6DC /* CoreLocation.framework */; };
+		5D8C7AEE1ECCC5DC0095E6DC /* GalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C7AED1ECCC5DC0095E6DC /* GalleryController.swift */; };
 		5DAB0C4D1EB3300600AC1F77 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */; };
-		5DAB0C4F1EB3304600AC1F77 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB0C4E1EB3304600AC1F77 /* mapView.swift */; };
+		5DAB0C4F1EB3304600AC1F77 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB0C4E1EB3304600AC1F77 /* MapView.swift */; };
 		ED22BB7B1E9F9FCE0084320F /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED22BB7A1E9F9FCE0084320F /* ServiceViewController.swift */; };
 		ED22BB7D1E9FA0560084320F /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED22BB7C1E9FA0560084320F /* ConfirmViewController.swift */; };
 		ED22BB7F1E9FAB950084320F /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED22BB7E1E9FAB950084320F /* ReviewCell.swift */; };
@@ -40,8 +43,11 @@
 		0FBD12C2736B482C6F3FCABF /* Pods-RAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RAT/Pods-RAT.debug.xcconfig"; sourceTree = "<group>"; };
 		5ADC1D6078B2619FCD9EB281 /* Pods_RAT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RAT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4A18661EBCBA9400678C91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5D8C7AE91ECCBBD60095E6DC /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		5D8C7AEB1ECCBE7E0095E6DC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5D8C7AED1ECCC5DC0095E6DC /* GalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryController.swift; sourceTree = "<group>"; };
 		5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		5DAB0C4E1EB3304600AC1F77 /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
+		5DAB0C4E1EB3304600AC1F77 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E0D24D3F6E7B37CE9B38B235 /* Pods-RAT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAT.release.xcconfig"; path = "Pods/Target Support Files/Pods-RAT/Pods-RAT.release.xcconfig"; sourceTree = "<group>"; };
 		ED22BB7A1E9F9FCE0084320F /* ServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		ED22BB7C1E9FA0560084320F /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D8C7AEC1ECCBE7E0095E6DC /* CoreLocation.framework in Frameworks */,
 				5DAB0C4D1EB3300600AC1F77 /* MapKit.framework in Frameworks */,
 				0A30D1A4CE1402B47963B8C8 /* Pods_RAT.framework in Frameworks */,
 			);
@@ -86,6 +93,7 @@
 		150C0AC8CA06FE5B40374530 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D8C7AEB1ECCBE7E0095E6DC /* CoreLocation.framework */,
 				5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */,
 				5ADC1D6078B2619FCD9EB281 /* Pods_RAT.framework */,
 			);
@@ -111,7 +119,9 @@
 				EDAC87B91E9EDC5B001E63E2 /* CrashViewController.swift */,
 				ED22BB7A1E9F9FCE0084320F /* ServiceViewController.swift */,
 				ED22BB7C1E9FA0560084320F /* ConfirmViewController.swift */,
-				5DAB0C4E1EB3304600AC1F77 /* mapView.swift */,
+				5DAB0C4E1EB3304600AC1F77 /* MapView.swift */,
+				5D8C7AE91ECCBBD60095E6DC /* LocationController.swift */,
+				5D8C7AED1ECCC5DC0095E6DC /* GalleryController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D8C7AEE1ECCC5DC0095E6DC /* GalleryController.swift in Sources */,
 				EDA390F61E94375C002B0C65 /* NotificationRouter.swift in Sources */,
 				EDCC4B7C1E8D6FCF00D94FB7 /* VehicleCell.swift in Sources */,
 				EDB05D2D1E8BC37B00FFE86E /* Vehicle.swift in Sources */,
@@ -314,12 +325,13 @@
 				EDA929DC1E8C7F97000D67BA /* Review.swift in Sources */,
 				ED7017CA1E7D49FF00955C99 /* CrashCell.swift in Sources */,
 				ED7017C71E7D368F00955C99 /* ListOfCrashesViewController.swift in Sources */,
+				5D8C7AEA1ECCBBD60095E6DC /* LocationController.swift in Sources */,
 				EDB05D311E8BD8F200FFE86E /* Offer.swift in Sources */,
 				ED97321D1E8AFCD200FCED3F /* Person.swift in Sources */,
 				ED99E5A41E8550260039EBF7 /* ValidatorHelper.swift in Sources */,
 				ED22BB7B1E9F9FCE0084320F /* ServiceViewController.swift in Sources */,
 				EDB05D2F1E8BD8CE00FFE86E /* Crash.swift in Sources */,
-				5DAB0C4F1EB3304600AC1F77 /* mapView.swift in Sources */,
+				5DAB0C4F1EB3304600AC1F77 /* MapView.swift in Sources */,
 				ED22BB7F1E9FAB950084320F /* ReviewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
