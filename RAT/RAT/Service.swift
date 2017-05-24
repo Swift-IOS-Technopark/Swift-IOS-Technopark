@@ -16,6 +16,7 @@ class Service: Object {
     dynamic var serviceDescription: String = ""
     dynamic var name: String = ""
     dynamic var phone: String = ""
+    dynamic var email: String = ""
     //dynamic var longitude: Double = 0.0
     //dynamic var latitude: Double = 0.0
     var reviews = LinkingObjects(fromType: Review.self, property: "service")

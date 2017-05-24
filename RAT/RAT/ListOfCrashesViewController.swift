@@ -36,11 +36,14 @@ class ListOfCrashesViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch nowTypeCrash {
-        case .actual:
+        switch chooseListOfCrashesSegmentedControl.selectedSegmentIndex {
+        case 0:
             return actualCrashes.count
-        case .history:
+        case 1:
             return historyCrashes.count
+            
+        default:
+            return 0
         }
         
     }
@@ -50,19 +53,21 @@ class ListOfCrashesViewController: UIViewController, UITableViewDataSource, UITa
         let cell = listOfCrashesTable.dequeueReusableCell(withIdentifier: "CrashCell") as! CrashCell
         let index = indexPath.row
         
-        switch nowTypeCrash {
-        case .actual:
+        switch chooseListOfCrashesSegmentedControl.selectedSegmentIndex {
+        case 0:
             cell.code.text = actualCrashes[index].code
             cell.shortDecription.text = actualCrashes[index].shortDescription
-        case .history:
+        case 1:
             cell.code.text = historyCrashes[index].code
             cell.shortDecription.text = historyCrashes[index].shortDescription
-        }
+        default:
+            break
+    }
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
         var crash = Crash()
         switch nowTypeCrash {
@@ -75,10 +80,14 @@ class ListOfCrashesViewController: UIViewController, UITableViewDataSource, UITa
         self.performSegue(withIdentifier: "fromListOfCrashesToCrashSegue", sender: crash)
     }
     
+    @IBAction func changedStatus(_ sender: UISegmentedControl) {
+        listOfCrashesTable.reloadData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromListOfCrashesToCrashSegue"{
         let destinationController = segue.destination as! CrashViewController
-        destinationController.crash = sender as! Crash
+            destinationController.crash = sender as! Crash}
     }
     
     
@@ -95,20 +104,6 @@ class ListOfCrashesViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-    
-    @IBAction func changeList(_ sender: Any) {
-        
-        switch chooseListOfCrashesSegmentedControl.selectedSegmentIndex
-        {
-        case 0:
-            nowTypeCrash = .actual
-        case 1:
-            nowTypeCrash = .history
-        default:
-            break
-        }
-        self.listOfCrashesTable.reloadData()
- 
-    }
+
  
 }

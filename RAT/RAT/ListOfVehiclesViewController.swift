@@ -18,9 +18,8 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         listOfVehiclesTable.dataSource = self
         listOfVehiclesTable.delegate = self
-        // listOfCrashesTable.separatorStyle = .none // delete all separators
         listOfVehiclesTable.tableFooterView = UIView() // delete excess separators
-        NotificationCenter.default.addObserver(self, selector: #selector(getVehiclesCallback(_:)), name: .getVehiclesCallback, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getListsOfVehiclesAndCrashesCallback(_:)), name: .getListsOfVehiclesAndCrashesCallback, object: nil)
         person = DataBaseHelper.getPerson()
     }
     
@@ -34,31 +33,95 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
         cell.number.text = person.vehicles[index].number
         cell.brand.text = person.vehicles[index].brand
         cell.model.text = person.vehicles[index].model
+        
+        var count = 0
+        for crash in person.vehicles[index].crashes{
+            if crash.actual{
+                count+=1
+            }
+        }
+        
+        if count==0 {
+            cell.errorLabel.text="OK"
+            cell.errorLabel.textColor=UIColor.green
+        }
+        else{
+            cell.errorLabel.text="\(count) erors"
+            cell.errorLabel.textColor=UIColor.red
+        }
+        
+        if person.vehicles[index].isAuction {
+            cell.marketLabel.text="Opened"
+            cell.marketLabel.textColor=UIColor.green
+        }
+        else{
+            cell.marketLabel.text="Closed"
+            cell.marketLabel.textColor=UIColor.red
+        }
+        
+        //cell.vehicle = person.vehicles[index]
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    var sendingVehicle:Vehicle?
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
-        let vehicle = person.vehicles[index]
+        //person=DataBaseHelper.getPerson()
+        var vehicle = person.vehicles[index]
+        vehicle = DataBaseHelper.getVehicle(id:person.vehicles[index].id)
+        sendingVehicle=vehicle
         APIHelper.getListOfActualCrashesRequest(vehicle: vehicle)
-        APIHelper.getListOfHistoryCrashesRequest(vehicle: vehicle)
-        self.performSegue(withIdentifier: "fromListOfVehicleToListOfCrashesSegue", sender: vehicle) // transition
+        self.performSegue(withIdentifier: "fromListOfVehicleToListOfCrashesSegue", sender: vehicle)
     }
  
-    func getVehiclesCallback(_ notification: NSNotification){
+//    func getVehiclesCallback(_ notification: NSNotification){
+//        let person = DataBaseHelper.getPerson()
+//        let data = notification.userInfo as! [String : JSON]
+//        let vehicles = data["data"]!.arrayValue
+//        for vehicle in vehicles {
+//            DataBaseHelper.setVehicle(person: person, json: vehicle)
+//        }
+//        self.listOfVehiclesTable.reloadData()
+//    }
+    
+    func getListsOfVehiclesAndCrashesCallback(_ notification: NSNotification){
+        print("callback aaaa")
         let person = DataBaseHelper.getPerson()
         let data = notification.userInfo as! [String : JSON]
-        let vehicles = data["data"]!.arrayValue
-        for vehicle in vehicles {
-            DataBaseHelper.setVehicle(person: person, json: vehicle)
+        let jsonVehicles = data["data"]!.arrayValue
+        var vehicleIDs = [Int]()
+        for jsonVehicle in jsonVehicles {
+            let id = jsonVehicle["id"].intValue
+            vehicleIDs.append(id)
         }
-        self.listOfVehiclesTable.reloadData()
+        DataBaseHelper.deleteVehicles(vehicleIds: vehicleIDs)
+        for jsonVehicle in jsonVehicles {
+            let vehicle = DataBaseHelper.setVehicle(person: person, json: jsonVehicle)
+            
+            let jsonCrashes = jsonVehicle["crashes"].arrayValue
+            for jsonCrash in jsonCrashes {
+                _ = DataBaseHelper.setCrash(vehicle:vehicle, json:jsonCrash)
+            }
+        }
+        listOfVehiclesTable.reloadData()
     }
     
+    @IBAction func refreshAction(_ sender: Any) {
+        APIHelper.getListsOfVehiclesAndCrashesRequest()
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "fromListOfVehicleToListOfCrashesSegue" {
-        let destinationController = segue.destination as! ListOfCrashesViewController
-        destinationController.vehicle = sender as! Vehicle
+        if segue.identifier == "fromListOfVehicleToListOfCrashesSegue"{
+            let barViewController = segue.destination as! VehicleTabBarController
+            _ = sender as? VehicleCell
+            barViewController.vehicle = sendingVehicle
+            print("sending vehicle id \(String(describing: sendingVehicle?.id))")
+            let nav = barViewController.viewControllers![0] as! UINavigationController
+            let destinationViewController = nav.viewControllers[0] as! ListOfCrashesViewController
+            destinationViewController.vehicle = sender as! Vehicle
+            destinationViewController.nowTypeCrash = .actual
         }
+
     }
 }

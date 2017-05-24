@@ -11,8 +11,9 @@ import UIKit
 class OfferCell: UITableViewCell {
 
     @IBOutlet weak var service: UILabel!
-    @IBOutlet weak var message: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var isAvalible: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

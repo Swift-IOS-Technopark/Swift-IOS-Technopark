@@ -16,4 +16,15 @@ extension Notification.Name {
     static let getListOfOffersCallback = Notification.Name("getListOfOffersCallback")
     static let getServiceCallback = Notification.Name("getServiceCallback")
     static let getListOfReviewsCallback = Notification.Name("getListOfReviewsCallback")
+    static let getListsOfVehiclesAndCrashesCallback = Notification.Name("getListsOfVehiclesAndCrashesCallback")
+    static let getListsOfOffersAndServicesCallback = Notification.Name("getListsOfOffersAndServicesCallback")
+    static let getListsOfHighLowOffersAndServicesCallback = Notification.Name("getListsOfHighLowOffersAndServicesCallback")
+
+    
+    static let addVehicleCallback = Notification.Name("addVehicleCallback")
+    static let changeVehicleCallback = Notification.Name("changeVehicleCallback")
+    static let deleteVehicleCallback = Notification.Name("deleteVehicleCallback")
+    static let editUserCallback = Notification.Name("editUserCallback")
+    
+    static let editVehicleCallback = Notification.Name("editVehicleCallback")
 }

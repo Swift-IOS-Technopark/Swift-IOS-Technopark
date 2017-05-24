@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import SwiftyVK
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,17 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let config = Realm.Configuration(
 
-            schemaVersion: 8,
+            schemaVersion: 13,
             
             migrationBlock: { migration, oldSchemaVersion in
                 
-                if (oldSchemaVersion < 8) {
+                if (oldSchemaVersion < 13) {
                     
                 }
         })
         Realm.Configuration.defaultConfiguration = config
         
         UIApplication.shared.statusBarStyle = .lightContent
+        FIRApp.configure()
         return true
     }
 
@@ -58,5 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        VK.process(url: url, sourceApplication: sourceApplication)
+        return true
+    }
 }
 

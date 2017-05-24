@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8C1C7EFC52F583FF96448027F51E277"
+               BlueprintIdentifier = "4740A190C3B3FC174CA65C85DA886A57"
                BuildableName = "Pods_RAT.framework"
                BlueprintName = "Pods-RAT"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8C1C7EFC52F583FF96448027F51E277"
+            BlueprintIdentifier = "4740A190C3B3FC174CA65C85DA886A57"
             BuildableName = "Pods_RAT.framework"
             BlueprintName = "Pods-RAT"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B8C1C7EFC52F583FF96448027F51E277"
+            BlueprintIdentifier = "4740A190C3B3FC174CA65C85DA886A57"
             BuildableName = "Pods_RAT.framework"
             BlueprintName = "Pods-RAT"
             ReferencedContainer = "container:Pods.xcodeproj">

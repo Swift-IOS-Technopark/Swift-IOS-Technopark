@@ -19,7 +19,7 @@ class Crash: Object {
     dynamic var date: String = ""
     dynamic var actual: Bool = true
     dynamic var vehicle: Vehicle?
-    var offers = LinkingObjects(fromType: Offer.self, property: "crash")
+    //var offers = LinkingObjects(fromType: Offer.self, property: "crash")
     
     override static func primaryKey() -> String? {
         return "id"

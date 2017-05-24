@@ -9,54 +9,46 @@
 import UIKit
 import SwiftyJSON
 
-class CrashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CrashViewController: UIViewController {
 
     @IBOutlet weak var code: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var fullDescription: UITextView!
-    @IBOutlet weak var listOfOffersTable: UITableView!
+//    @IBOutlet weak var listOfOffersTable: UITableView!
     
     var crash = Crash()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listOfOffersTable.dataSource = self
-        listOfOffersTable.delegate = self
-        listOfOffersTable.tableFooterView = UIView() // delete excess separators
+//        listOfOffersTable.dataSource = self
+//        listOfOffersTable.delegate = self
+//        listOfOffersTable.tableFooterView = UIView() // delete excess separators
         code.text = crash.code
         date.text = crash.date
         fullDescription.text = crash.fullDescription
-        NotificationCenter.default.addObserver(self, selector: #selector(getListOfOffersCallback(_:)), name: .getListOfOffersCallback, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(getListOfOffersCallback(_:)), name: .getListOfOffersCallback, object: nil)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return crash.offers.count
-        
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//
+//        return crash.offers.count
+//        
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        
+//        let cell = listOfOffersTable.dequeueReusableCell(withIdentifier: "OfferCell") as! OfferCell
+//        let index = indexPath.row
+//        
+//        cell.service.text = crash.offers[index].service!.name
+//        cell.message.text = crash.offers[index].message
+//        cell.price.text = String(crash.offers[index].price)
+//        
+//        return cell
+//    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = listOfOffersTable.dequeueReusableCell(withIdentifier: "OfferCell") as! OfferCell
-        let index = indexPath.row
-        
-        cell.service.text = crash.offers[index].service!.name
-        cell.message.text = crash.offers[index].message
-        cell.price.text = String(crash.offers[index].price)
-        
-        return cell
-    }
-    /*
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let index = indexPath.row
-        var crash = Crash()
-
-        crash = historyCrashes[index]
-        APIHelper.getListOfOffersRequest(crash: crash)
-        self.performSegue(withIdentifier: "fromListOfCrashesToCrashSegue", sender: crash)
-    }
-    */
+    
     
     /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,16 +57,16 @@ class CrashViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     */
     
-    func getListOfOffersCallback(_ notification: NSNotification){
-        print("in")
-        let data = notification.userInfo as! [String : JSON]
-        let offers = data["data"]!.arrayValue
-        print("offer: \(offers)")
-        for offer in offers {
-            
-            DataBaseHelper.setOffer(crash: crash, json: offer)
-        }
-        self.listOfOffersTable.reloadData()
-        
-    }
+//    func getListOfOffersCallback(_ notification: NSNotification){
+//        print("in")
+//        let data = notification.userInfo as! [String : JSON]
+//        let offers = data["data"]!.arrayValue
+//        print("offer: \(offers)")
+//        for offer in offers {
+//            
+//            DataBaseHelper.setOffer(crash: crash, json: offer)
+//        }
+//        self.listOfOffersTable.reloadData()
+//        
+//    }
 }
