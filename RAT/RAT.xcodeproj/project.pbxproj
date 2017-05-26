@@ -18,6 +18,7 @@
 		553531D11ED2E29600A23445 /* ListOfLowOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553531D01ED2E29600A23445 /* ListOfLowOffersViewController.swift */; };
 		55DDAD7B1ED1891200F2F313 /* AddRedactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDAD7A1ED1891200F2F313 /* AddRedactViewController.swift */; };
 		55DDAD7D1ED1B17800F2F313 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDAD7C1ED1B17800F2F313 /* ChatViewController.swift */; };
+		5D2D5F981ED7439500E3FF9E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D5F971ED7439500E3FF9E /* Launch Screen.storyboard */; };
 		5D4A18671EBCBA9400678C91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4A18661EBCBA9400678C91 /* Assets.xcassets */; };
 		5DAB0C4D1EB3300600AC1F77 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */; };
 		5DAB0C4F1EB3304600AC1F77 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB0C4E1EB3304600AC1F77 /* mapView.swift */; };
@@ -63,6 +64,7 @@
 		55DDAD7A1ED1891200F2F313 /* AddRedactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRedactViewController.swift; sourceTree = "<group>"; };
 		55DDAD7C1ED1B17800F2F313 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		5CA389BAE570D8D13A9E1ECB /* Pods-RAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RAT/Pods-RAT.debug.xcconfig"; sourceTree = "<group>"; };
+		5D2D5F971ED7439500E3FF9E /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5D4A18661EBCBA9400678C91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5DAB0C4E1EB3304600AC1F77 /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				EDAFF5F11E7B3C630069F42E /* AppDelegate.swift */,
 				EDAFF5FD1E7B3C630069F42E /* Info.plist */,
 				CAFA3C591ED448970051D0A3 /* GoogleService-Info.plist */,
+				5D2D5F971ED7439500E3FF9E /* Launch Screen.storyboard */,
 			);
 			path = RAT;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				TargetAttributes = {
 					EDAFF5ED1E7B3C620069F42E = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = L9D4282J7Q;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -302,6 +306,7 @@
 			files = (
 				5D4A18671EBCBA9400678C91 /* Assets.xcassets in Resources */,
 				EDAFF5F71E7B3C630069F42E /* Main.storyboard in Resources */,
+				5D2D5F981ED7439500E3FF9E /* Launch Screen.storyboard in Resources */,
 				CAFA3C5A1ED448970051D0A3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,7 +518,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = L9D4282J7Q;
 				INFOPLIST_FILE = RAT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -530,7 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = L9D4282J7Q;
 				INFOPLIST_FILE = RAT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class AddRedactViewController: UIViewController {
+class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var pictureData : NSData = NSData.init()
     @IBOutlet weak var numberTextField: UITextField!
     @IBOutlet weak var vinTextField: UITextField!
     @IBOutlet weak var brandTextField: UITextField!
@@ -26,6 +27,16 @@ class AddRedactViewController: UIViewController {
     
     @IBOutlet weak var deleteButton: UIButton!
     
+    @IBOutlet weak var imageButton: UIButton!
+  //<UIImage: 0x608000490950> size {3000, 2002} orientation 0 scale 1.000000
+    @IBAction func addImageButton(_ sender: Any) {
+        var picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+ 
     
     var vehicle:Vehicle? = nil
     var person = Person()
@@ -56,7 +67,7 @@ class AddRedactViewController: UIViewController {
             addButton.isHidden = true
 
         }
-        photoImageView.image = UIImage(named:"машина")
+        photoImageView.image = UIImage.init(data: vehicle?.picture as! Data)
         NotificationCenter.default.addObserver(self, selector: #selector(addVehicleCallback(_:)), name: .addVehicleCallback, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeVehicleCallback(_:)), name: .changeVehicleCallback, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteVehicleCallback(_:)), name: .deleteVehicleCallback, object: nil)
@@ -90,7 +101,8 @@ class AddRedactViewController: UIViewController {
         vehicle?.owner = person
         vehicle?.isAuction = marketSwitch.isOn
         APIHelper.changeVehicleRequest(vehicle: vehicle!)
-
+//        vehicle?.picture = pictureData
+//        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
     }
     
     @IBAction func deleteVehicle(_ sender: Any) {
@@ -114,6 +126,7 @@ class AddRedactViewController: UIViewController {
     func changeVehicleCallback(_ notification: NSNotification){
         print("call_back")
         DataBaseHelper.setVehicle(vehicle: vehicle! )
+        
         APIHelper.getListsOfVehiclesAndCrashesRequest()
         self.navigationController?.popViewController(animated: true)
         
@@ -136,25 +149,40 @@ class AddRedactViewController: UIViewController {
     
     
     //MARK: UIImagePickerControllerDelegate
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // Dismiss the picker if the user canceled.
-        dismiss(animated: true, completion: nil)
-    }
-    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        //  imageField.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+       // photoImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        // надо для сохранения фото в профиле
+        
+        photoImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        pictureData = UIImageJPEGRepresentation( photoImageView.image!, 1) as! NSData
+        
+      //  vehicle?.picture = pictureData
+        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
+        print("picture")
+        photoImageView.image = UIImage.init(data: vehicle?.picture as! Data)
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }/*
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         // The info dictionary may contain multiple representations of the image. You want to use the original.
         guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        
+ 
         // Set photoImageView to display the selected image.
-        photoImageView.image = selectedImage
+//        photoImageView.image = selectedImage
         
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
     }
-    
+*/
+    /*
     //MARK: Actions
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         
@@ -171,6 +199,6 @@ class AddRedactViewController: UIViewController {
         imagePickerController.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
         present(imagePickerController, animated: true, completion: nil)
     }
-
+*/
 
 }

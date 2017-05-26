@@ -73,6 +73,15 @@ class DataBaseHelper {
             save(object: vehicle)
     }
     
+    class func setVehiclePicture(data: NSData, vehicle: Vehicle){
+        try! realm.write {
+            let vehicle = vehicle
+            vehicle.picture = data
+        }
+        save(object: vehicle)
+    }
+    
+    
     class func getPerson() -> Person {
         let predicate = NSPredicate(format: "actual == true")
         return realm.objects(Person.self).filter(predicate).first!

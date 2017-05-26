@@ -34,6 +34,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var vkView: UIView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBAction func logIn(_ sender: Any) {
         // TODO: проверить вводимые поля
         /*
@@ -87,12 +88,18 @@ class ViewController: UIViewController {
         passwordTextField.backgroundColor = UIColor(white: 1, alpha: 0)
         passwordTextField.borderStyle = UITextBorderStyle(rawValue: 0)!
         
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        
         
         // сделать navigationBar прозрачным
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+        
+        addTapGestureToHideKeyboard()
         
     }
     
@@ -101,6 +108,31 @@ class ViewController: UIViewController {
             APIHelper.getListsOfVehiclesAndCrashesRequest()
         }
     }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        scrollView.setContentOffset(CGPoint.init(x: 0, y: 100), animated: true)
+       // scrollView.contentSize.height = 610
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        scrollView.setContentOffset(CGPoint.init(x: 0, y: -64), animated: true)
+        //scrollView.contentSize.height = 500
+        
+    }
+    
+    func addTapGestureToHideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func tapGesture() {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        
+    }
+    
+   
+
 
 }
 

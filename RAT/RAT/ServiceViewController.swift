@@ -36,6 +36,8 @@ class ServiceViewController: UIViewController, UITableViewDataSource, UITableVie
         print("found reviews \(service.reviews.count)")
         listOfReviewsTable.dataSource = self
         listOfReviewsTable.delegate = self
+        
+        print(serviceAdress)
     }
     
     

@@ -18,6 +18,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var lastnameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     let person = Person()
     
@@ -66,6 +67,36 @@ class RegistrationViewController: UIViewController {
         firstnameTextField.borderStyle = UITextBorderStyle(rawValue: 0)!
         
         NotificationCenter.default.addObserver(self, selector: #selector(signUpCallback), name: .signUpCallback, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        addTapGestureToHideKeyboard()
+
+    }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        //scrollView.setContentOffset(CGPoint.init(x: 0, y: 110), animated: true)
+         scrollView.contentSize.height = 810
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        //scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+        scrollView.contentSize.height = 500
+        
+    }
+    
+    func addTapGestureToHideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func tapGesture() {
+        
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        repeatPasswordTextField.resignFirstResponder()
+        firstnameTextField.resignFirstResponder()
+        lastnameTextField.resignFirstResponder()
+        phoneTextField.resignFirstResponder()
         
     }
 }

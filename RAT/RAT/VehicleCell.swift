@@ -13,6 +13,7 @@ class VehicleCell: UITableViewCell {
     
     @IBOutlet weak var brand: UILabel!
     @IBOutlet weak var number: UILabel!
+    @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var model: UILabel!
     //var vehicle:Vehicle?
     @IBOutlet weak var errorLabel: UILabel!
