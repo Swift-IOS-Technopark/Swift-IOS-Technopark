@@ -40,7 +40,13 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
         cell.number.text = person.vehicles[index].number
         cell.brand.text = person.vehicles[index].brand
         cell.model.text = person.vehicles[index].model
-        cell.picture.image = UIImage.init(data: person.vehicles[index].picture as! Data)
+        if let image = person.vehicles[index].picture as Data? {
+            cell.picture.image = UIImage.init(data: image)
+        }
+        else {
+            cell.picture.image = UIImage.init(named: "машина2")
+        }
+        
         
         var count = 0
         for crash in person.vehicles[index].crashes{
@@ -72,11 +78,12 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     var sendingVehicle:Vehicle?
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
         //person=DataBaseHelper.getPerson()
         var vehicle = person.vehicles[index]
-        vehicle = DataBaseHelper.getVehicle(id:person.vehicles[index].id)
+        vehicle = DataBaseHelper.getVehicle(id:person.vehicles[index].id)!
         sendingVehicle=vehicle
         APIHelper.getListOfActualCrashesRequest(vehicle: vehicle)
         self.performSegue(withIdentifier: "fromListOfVehicleToListOfCrashesSegue", sender: vehicle)
@@ -93,7 +100,6 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
 //    }
     
     func getListsOfVehiclesAndCrashesCallback(_ notification: NSNotification){
-        print("callback aaaa")
         let person = DataBaseHelper.getPerson()
         let data = notification.userInfo as! [String : JSON]
         let jsonVehicles = data["data"]!.arrayValue

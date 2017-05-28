@@ -30,7 +30,7 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var imageButton: UIButton!
   //<UIImage: 0x608000490950> size {3000, 2002} orientation 0 scale 1.000000
     @IBAction func addImageButton(_ sender: Any) {
-        var picker = UIImagePickerController()
+        let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .photoLibrary
         self.present(picker, animated: true, completion: nil)
@@ -38,7 +38,8 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
     
  
     
-    var vehicle:Vehicle? = nil
+    var vehicle: Vehicle? = nil
+    
     var person = Person()
     //MARK: Properties
     
@@ -67,7 +68,17 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
             addButton.isHidden = true
 
         }
-        photoImageView.image = UIImage.init(data: vehicle?.picture as! Data)
+        if vehicle != nil {
+            if let image = vehicle!.picture as Data? {
+                photoImageView.image = UIImage.init(data: image)
+            }
+            else{
+                photoImageView.image = UIImage.init(named: "машина2")
+            }
+        }
+        else{
+            photoImageView.image = UIImage.init(named: "машина2")
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(addVehicleCallback(_:)), name: .addVehicleCallback, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeVehicleCallback(_:)), name: .changeVehicleCallback, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteVehicleCallback(_:)), name: .deleteVehicleCallback, object: nil)
@@ -118,6 +129,7 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
         let id = data?["vehicle_id"] as! Int
         vehicle?.id=id
         DataBaseHelper.setVehicle(person: person, vehicle: vehicle! )
+        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
         APIHelper.getListOfVehiclesRequest()
         self.navigationController?.popViewController(animated: true)
         
@@ -158,12 +170,14 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
         // надо для сохранения фото в профиле
         
         photoImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        pictureData = UIImageJPEGRepresentation( photoImageView.image!, 1) as! NSData
+        pictureData = UIImageJPEGRepresentation( photoImageView.image!, 1)! as NSData
         
       //  vehicle?.picture = pictureData
-        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
+//        if vehicle != nil {
+//            DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
+//        }
         print("picture")
-        photoImageView.image = UIImage.init(data: vehicle?.picture as! Data)
+        //photoImageView.image = UIImage.init(data: vehicle?.picture as! Data)
         
         self.dismiss(animated: true, completion: nil)
         

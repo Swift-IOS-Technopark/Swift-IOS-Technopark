@@ -19,8 +19,9 @@ class Vehicle: Object{
     dynamic var year: String = ""
     dynamic var isAuction: Bool = false
     dynamic var owner: Person?
-    dynamic var picture: NSData = UIImageJPEGRepresentation((UIImage.init(named: "машина2"))!, 1) as! NSData
-
+    //dynamic var picture: NSData = UIImageJPEGRepresentation((UIImage.init(named: "машина2"))!, 1) as! NSData
+    dynamic var picture: NSData?
+    
     var crashes = LinkingObjects(fromType: Crash.self, property: "vehicle")
     var offers = LinkingObjects(fromType: Offer.self, property: "vehicle")
     

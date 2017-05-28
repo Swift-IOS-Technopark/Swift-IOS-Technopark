@@ -25,6 +25,5 @@ extension Notification.Name {
     static let changeVehicleCallback = Notification.Name("changeVehicleCallback")
     static let deleteVehicleCallback = Notification.Name("deleteVehicleCallback")
     static let editUserCallback = Notification.Name("editUserCallback")
-    
     static let editVehicleCallback = Notification.Name("editVehicleCallback")
 }
