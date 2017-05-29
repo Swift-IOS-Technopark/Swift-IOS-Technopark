@@ -7,11 +7,11 @@ target 'RAT' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'RealmSwift', '~> 2.5.0'
-  pod 'SwiftyVK', :git => 'https://github.com/WE-St0r/SwiftyVK.git'
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'JSQMessagesViewController'
   pod 'Firebase/Core'
   pod 'VK-ios-sdk', '~> 1.4'
+
 end

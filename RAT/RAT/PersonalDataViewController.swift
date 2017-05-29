@@ -27,6 +27,7 @@ class PersonalDataViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         addTapGestureToHideKeyboard()
         
         emailTextField.backgroundColor = UIColor(white: 1, alpha: 0)

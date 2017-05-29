@@ -22,26 +22,66 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>vk6032159</string>
+			<string>vk6050937</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>vk6032159</string>
+				<string>vk6050937</string>
 			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>yandexmaps</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>yandexmaps</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>fb467852976888697</string>
+	<key>FacebookDisplayName</key>
+	<string>bmstu.RAT</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
+	<key>LSApplicationQueriesSchemes - 2</key>
+	<array>
+		<string>vk</string>
+		<string>vk-share</string>
 		<string>vkauthorize</string>
-		<string>vk6032159</string>
+		<string>yandexmaps</string>
+		<string>yandexnavi</string>
+		<string>vkauthorize</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Позвольте использовать Вашу геолокацию.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We access your photos to attach images to messages</string>
+	<string>Your photo please</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>

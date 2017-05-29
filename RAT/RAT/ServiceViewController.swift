@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyJSON
+import CoreLocation
 
-class ServiceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ServiceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var serviceImage: UIImageView!
     @IBOutlet weak var serviceDescription: UITextView!
@@ -18,8 +19,32 @@ class ServiceViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var serviceEmail: UILabel!
     @IBOutlet weak var servicePhone: UILabel!
     @IBOutlet weak var serviceAdress: UILabel!
+    var naviString = "" ,longitudeString = "",latitudeString = ""
+    var latitude =  56.300678, longitude = 44.031753
+
     
-    
+    @IBAction func navigatorButton(_ sender: Any) {
+
+        longitudeString = String(longitude)
+        latitudeString = String(latitude)
+        // делаем ссылку для Яндекс.Навигатора
+        
+        
+        naviString = "yandexnavi://build_route_on_map?lat_to=" + latitudeString + "&lon_to=" + longitudeString
+
+        
+        
+        let url = URL(string: naviString)!
+       
+        UIApplication.shared.openURL(url)
+
+            
+        
+   //     let url = URL(string: "yandexnavi://build_route_on_map?lat_to=56.300678&lon_to=44.031753")!
+        
+        
+        
+    }
     
     
     var service = Service()
@@ -75,5 +100,11 @@ class ServiceViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         self.listOfReviewsTable.reloadData()
         
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //
+    }
+    func  locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        //
     }
 }
