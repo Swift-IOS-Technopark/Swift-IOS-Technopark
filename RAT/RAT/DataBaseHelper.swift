@@ -104,9 +104,10 @@ class DataBaseHelper {
     
     class func getVehicle(id: Int) -> Vehicle? {
         let predicate = NSPredicate(format: "id == \(id)")
+        print(id)
         do {
-            return realm.objects(Vehicle.self).filter(predicate).first!
-        } catch let error as NSError{
+            return realm.objects(Vehicle.self).filter(predicate).first
+        } catch let error{
             return nil
         }
     }

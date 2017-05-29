@@ -19,37 +19,29 @@ class ServiceViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var serviceEmail: UILabel!
     @IBOutlet weak var servicePhone: UILabel!
     @IBOutlet weak var serviceAdress: UILabel!
-    var naviString,longitudeString,latitudeString: String?
-    var longitude = 0.0, latitude = 0.0
+    var naviString = "" ,longitudeString = "",latitudeString = ""
+    var latitude =  56.300678, longitude = 44.031753
 
-    let locationManager = CLLocationManager()
     
     @IBAction func navigatorButton(_ sender: Any) {
-        
-        locationManager.delegate = self as! CLLocationManagerDelegate
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.requestLocation()
-        }
+
         longitudeString = String(longitude)
         latitudeString = String(latitude)
         // делаем ссылку для Яндекс.Навигатора
-        naviString = "yandexnavi://build_route_on_map?lat_from=" + String(Double((locationManager.location?.coordinate.latitude)!)) + "&lon_from=" + String(Double((locationManager.location?.coordinate.longitude)!)) + "&lat_to=" + latitudeString! + "&lon_to=" + longitudeString!
         
-        var naviURL = URL(string: naviString!)!
         
-        if (UIApplication.shared.canOpenURL(naviURL)) {
-            print("can open URL")
-            UIApplication.shared.open(naviURL, options: [:], completionHandler: nil)
+        naviString = "yandexnavi://build_route_on_map?lat_to=" + latitudeString + "&lon_to=" + longitudeString
+
+        
+        
+        var url = URL(string: naviString)!
+       
+        UIApplication.shared.openURL(url)
+
             
-        }
-        else {
-            print("can not open URL")
-            // если приложение не установлено, открываем на него ссылку в AppleStore
-            UIApplication.shared.open(URL(string: "https://itunes.apple.com/ru/app/yandex.navigator/id474500851")!, options: [:], completionHandler: nil)
-        }
+        
+   //     let url = URL(string: "yandexnavi://build_route_on_map?lat_to=56.300678&lon_to=44.031753")!
+        
         
         
     }

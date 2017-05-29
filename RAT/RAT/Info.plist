@@ -32,11 +32,19 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>fb467852976888697</string>
+			<string>yandexmaps</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb467852976888697</string>
+				<string>yandexmaps</string>
 			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
@@ -71,7 +79,7 @@
 		<false/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Позвольте использовать Вашу геолокацию.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Your photo please</string>
 	<key>UILaunchStoryboardName</key>
