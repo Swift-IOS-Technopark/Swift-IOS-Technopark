@@ -9,11 +9,17 @@
 import UIKit
 import SwiftyJSON
 import Firebase
+import VK_ios_sdk
+let okButton = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+fileprivate var SCOPE: [Any]? = nil
 
-class ViewController: UIViewController {
+
+
+class ViewController: UIViewController,VKSdkDelegate,VKSdkUIDelegate {
 
 
     
+
     @IBOutlet weak var imageLabelView: UILabel!
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -52,15 +58,33 @@ class ViewController: UIViewController {
         })
         APIHelper.logInRequest(person: person)
         
+        
+        
     }
     
     @IBAction func vkLogIn(_ sender: Any) {
-        let vk = VKHelper()
-        vk.authorize()
-        vk.getState()
+        print("вк_логин")
+        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES, VK_PER_OFFLINE]
+        VKSdk.instance().register(self)
+        VKSdk.instance().uiDelegate = self
+        
+        VKSdk.authorize(SCOPE)
+        print("авторизация прошла")
+        /*
+         чтобы добраться до имени, телефона и тп, нужно использовать что-то вроде этого VKSdk.accessToken().localUser.first_name
+         но в этой вьюхе работать не будет. почему не знаю. внизу принты раскомменчивать нельзя, висят для примера
+         print(VKSdk.accessToken().localUser.first_name)
+         print(VKSdk.accessToken().localUser.phone)
+         print(VKSdk.accessToken().localUser.mobile_phone)
+
+ */
+        
+        
     }
+
     
     @IBAction func facebookLogIn(_ sender: Any) {
+
         
     }
     
@@ -131,7 +155,34 @@ class ViewController: UIViewController {
         
     }
     
-   
+    func vkSdkShouldPresent(_ controller: UIViewController) {
+        present(controller, animated: true, completion: nil)
+    }
+    
+    func vkSdkNeedCaptchaEnter(_ captchaError: VKError) {
+        if let captchaVC = VKCaptchaViewController.captchaControllerWithError(captchaError) {
+            present(captchaVC, animated: true, completion: nil)
+        }
+    }
+    func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult) {
+        if (result.token != nil) {
+            print("авторизован")
+            print(result.token.email)
+            
+        } else if (result.error != nil) {
+            let alertVC = UIAlertController(title: "", message: "Access denied\n\(result.error)", preferredStyle: UIAlertControllerStyle.alert)
+            alertVC.addAction(okButton)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func vkSdkUserAuthorizationFailed() {
+        let alertVC = UIAlertController(title: "", message: "Access denied", preferredStyle: UIAlertControllerStyle.alert)
+        alertVC.addAction(okButton)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+
 
 
 }

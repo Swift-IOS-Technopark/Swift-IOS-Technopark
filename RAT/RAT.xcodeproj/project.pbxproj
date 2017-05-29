@@ -18,6 +18,7 @@
 		553531D11ED2E29600A23445 /* ListOfLowOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553531D01ED2E29600A23445 /* ListOfLowOffersViewController.swift */; };
 		55DDAD7B1ED1891200F2F313 /* AddRedactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDAD7A1ED1891200F2F313 /* AddRedactViewController.swift */; };
 		55DDAD7D1ED1B17800F2F313 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DDAD7C1ED1B17800F2F313 /* ChatViewController.swift */; };
+		5D1FA5BC1EDB47B200B1B464 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1FA5BB1EDB47B200B1B464 /* CoreLocation.framework */; };
 		5D2D5F981ED7439500E3FF9E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D5F971ED7439500E3FF9E /* Launch Screen.storyboard */; };
 		5D4A18671EBCBA9400678C91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4A18661EBCBA9400678C91 /* Assets.xcassets */; };
 		5DAB0C4D1EB3300600AC1F77 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */; };
@@ -64,6 +65,7 @@
 		55DDAD7A1ED1891200F2F313 /* AddRedactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRedactViewController.swift; sourceTree = "<group>"; };
 		55DDAD7C1ED1B17800F2F313 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		5CA389BAE570D8D13A9E1ECB /* Pods-RAT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RAT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RAT/Pods-RAT.debug.xcconfig"; sourceTree = "<group>"; };
+		5D1FA5BB1EDB47B200B1B464 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5D2D5F971ED7439500E3FF9E /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5D4A18661EBCBA9400678C91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -107,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D1FA5BC1EDB47B200B1B464 /* CoreLocation.framework in Frameworks */,
 				5DAB0C4D1EB3300600AC1F77 /* MapKit.framework in Frameworks */,
 				0DC6CDD4515568D67F6614EE /* Pods_RAT.framework in Frameworks */,
 			);
@@ -118,6 +121,7 @@
 		150C0AC8CA06FE5B40374530 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D1FA5BB1EDB47B200B1B464 /* CoreLocation.framework */,
 				5DAB0C4C1EB3300600AC1F77 /* MapKit.framework */,
 				A34E6BECE7F6DFC49F93F745 /* Pods_RAT.framework */,
 			);

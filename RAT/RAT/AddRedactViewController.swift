@@ -11,6 +11,7 @@ import UIKit
 class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var pictureData : NSData = NSData.init()
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var numberTextField: UITextField!
     @IBOutlet weak var vinTextField: UITextField!
     @IBOutlet weak var brandTextField: UITextField!
@@ -83,6 +84,34 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(changeVehicleCallback(_:)), name: .changeVehicleCallback, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteVehicleCallback(_:)), name: .deleteVehicleCallback, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        addTapGestureToHideKeyboard()
+        /*
+         @IBOutlet weak var numberTextField: UITextField!
+         @IBOutlet weak var vinTextField: UITextField!
+         @IBOutlet weak var brandTextField: UITextField!
+         @IBOutlet weak var modelTextField: UITextField!
+         @IBOutlet weak var yearTextField: UITextField!
+
+ */
+        
+        numberTextField.backgroundColor = UIColor(white: 1, alpha: 0)
+        numberTextField.borderStyle = UITextBorderStyle(rawValue: 0)!
+        
+        vinTextField.backgroundColor = UIColor(white: 1, alpha: 0)
+        vinTextField.borderStyle = UITextBorderStyle(rawValue: 0)!
+        
+        brandTextField.backgroundColor = UIColor(white: 1, alpha: 0)
+        brandTextField.borderStyle = UITextBorderStyle(rawValue: 0)!
+        
+        modelTextField.backgroundColor = UIColor(white: 1, alpha: 0)
+        modelTextField.borderStyle = UITextBorderStyle(rawValue: 0)!
+        
+        yearTextField.backgroundColor = UIColor(white: 1, alpha: 0)
+        yearTextField.borderStyle = UITextBorderStyle(rawValue: 0)!
+        
     }
     
     
@@ -113,7 +142,8 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
         vehicle?.isAuction = marketSwitch.isOn
         APIHelper.changeVehicleRequest(vehicle: vehicle!)
 //        vehicle?.picture = pictureData
-//        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
+        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
+        
     }
     
     @IBAction func deleteVehicle(_ sender: Any) {
@@ -215,4 +245,31 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
     }
 */
 
+    func keyboardWillShow(_ notification: Notification) {
+        //scrollView.setContentOffset(CGPoint.init(x: 0, y: 110), animated: true)
+        scrollView.contentSize.height = 810
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        //scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
+        scrollView.contentSize.height = 500
+        
+    }
+    
+    func addTapGestureToHideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func tapGesture() {
+        
+        numberTextField.resignFirstResponder()
+        vinTextField.resignFirstResponder()
+        brandTextField.resignFirstResponder()
+        modelTextField.resignFirstResponder()
+        yearTextField.resignFirstResponder()
+        
+        
+        
+    }
 }

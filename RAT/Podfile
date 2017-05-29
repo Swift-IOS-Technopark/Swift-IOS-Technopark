@@ -13,4 +13,8 @@ target 'RAT' do
   pod 'Firebase/Database'
   pod 'JSQMessagesViewController'
   pod 'Firebase/Core'
+  pod 'VK-ios-sdk', '~> 1.4'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
 end

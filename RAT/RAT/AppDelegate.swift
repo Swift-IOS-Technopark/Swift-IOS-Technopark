@@ -10,6 +10,10 @@ import UIKit
 import RealmSwift
 import SwiftyVK
 import Firebase
+import VK_ios_sdk
+
+
+fileprivate var SCOPE: [Any]? = nil
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +39,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         FIRApp.configure()
+        
+        print("func application")
+
+        VKSdk.initialize(withAppId: "6050937")
+        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES, VK_PER_OFFLINE]
+        VKSdk.wakeUpSession(SCOPE, complete: {(_ state: VKAuthorizationState, _ error: Error?) -> Void in
+            if error != nil {
+                let alertVC = UIAlertController(title: "", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
+                alertVC.addAction(okButton)
+                self.window?.rootViewController?.present(alertVC, animated: true, completion: nil)
+            }
+            else if state == VKAuthorizationState.authorized{
+                print("авторизован")
+                
+                
+            }
+            else if state != VKAuthorizationState.authorized {
+                print("не авторизован")
+            }
+        })
+
+        
         return true
     }
 
@@ -61,8 +87,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        VK.process(url: url, sourceApplication: sourceApplication)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        VKSdk.processOpen(url, fromApplication: UIApplicationOpenURLOptionsKey.sourceApplication.rawValue)
+        print("application URL")
         return true
     }
 }
