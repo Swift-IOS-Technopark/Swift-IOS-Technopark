@@ -13,4 +13,5 @@ target 'RAT' do
   pod 'Firebase/Database'
   pod 'JSQMessagesViewController'
   pod 'Firebase/Core'
+  pod 'VK-ios-sdk', '~> 1.4'
 end

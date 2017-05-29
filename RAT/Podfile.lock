@@ -50,6 +50,7 @@ PODS:
     - Realm (= 2.5.1)
   - SwiftyJSON (3.1.4)
   - SwiftyVK (2.0.8)
+  - VK-ios-sdk (1.4.6)
 
 DEPENDENCIES:
   - Alamofire
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - RealmSwift (~> 2.5.0)
   - SwiftyJSON
   - SwiftyVK (from `https://github.com/WE-St0r/SwiftyVK.git`)
+  - VK-ios-sdk (~> 1.4)
 
 EXTERNAL SOURCES:
   SwiftyVK:
@@ -88,7 +90,8 @@ SPEC CHECKSUMS:
   RealmSwift: f719e7511c902b8908593e8f143f59e47931bdb6
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyVK: 81d1aa08ee5a5a09d4bd152b0cf1fd4ee46441c6
+  VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
 
-PODFILE CHECKSUM: 57593199294a0e432a8698a5cba3f134acbf871a
+PODFILE CHECKSUM: 88dacbd34de858ac09a03e7480135b611572ccc7
 
 COCOAPODS: 1.2.1
