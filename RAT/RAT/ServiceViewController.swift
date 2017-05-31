@@ -20,7 +20,7 @@ class ServiceViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var servicePhone: UILabel!
     @IBOutlet weak var serviceAdress: UILabel!
     var naviString = "" ,longitudeString = "",latitudeString = ""
-    var latitude =  56.300678, longitude = 44.031753
+    var latitude =  55.809158, longitude = 37.832169
 
     
     @IBAction func navigatorButton(_ sender: Any) {
@@ -65,6 +65,7 @@ class ServiceViewController: UIViewController, UITableViewDataSource, UITableVie
         listOfReviewsTable.delegate = self
         
         print(serviceAdress)
+        serviceImage.image = UIImage.init(named: "service_image")
     }
     
     

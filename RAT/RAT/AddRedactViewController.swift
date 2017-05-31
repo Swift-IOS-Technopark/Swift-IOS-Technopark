@@ -145,8 +145,9 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
         vehicle.isAuction = marketSwitch.isOn
         APIHelper.changeVehicleRequest(vehicle: vehicle)
 //        vehicle?.picture = pictureData
-        pictureData = UIImagePNGRepresentation(photoImageView.image!) as! NSData
-        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle)
+        if photoImageView.image != UIImage.init(named: "машина2"){
+            DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle)
+        }
         
     }
     
@@ -169,7 +170,9 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
         //DataBaseHelper.setVehicleID(vehicle: vehicle, id: id)
         //DataBaseHelper.setVehicle(person: person, vehicle: vehicle )
         DataBaseHelper.setVehicle(person: person, vehicle: vehicle)
-        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle)
+        if photoImageView.image != UIImage.init(named: "машина2"){
+            DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle)
+        }
         //APIHelper.getListsOfVehiclesAndCrashesRequest()
         self.navigationController?.popViewController(animated: true)
         
@@ -184,7 +187,7 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func deleteVehicleCallback(_ notification: NSNotification){
-        DataBaseHelper.deleteVehicle(vehicle: vehicle )
+        //DataBaseHelper.deleteVehicle(vehicle: vehicle )
         //APIHelper.getListsOfVehiclesAndCrashesRequest()
         //perfom seg for back
         //
@@ -255,7 +258,7 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
 
     func keyboardWillShow(_ notification: Notification) {
         //scrollView.setContentOffset(CGPoint.init(x: 0, y: 110), animated: true)
-        scrollView.contentSize.height = 810
+        scrollView.contentSize.height = 780
     }
     
     func keyboardWillHide(_ notification: Notification) {

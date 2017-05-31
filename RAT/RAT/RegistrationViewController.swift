@@ -24,19 +24,18 @@ class RegistrationViewController: UIViewController {
     
     @IBAction func signUp(_ sender: Any) {
        
-        /*
+        
         person.email = emailTextField.text!
         person.password = passwordTextField.text!
         person.firstname = firstnameTextField.text!
         person.lastname = lastnameTextField.text!
         person.phone = phoneTextField.text!
-        */
 
-        person.email = "user@mail.ru"
-        person.password = "qwerty"
-        person.firstname = "user"
-        person.lastname = "userovich"
-        person.phone = "88005553535"
+//        person.email = "user@mail.ru"
+//        person.password = "qwerty"
+//        person.firstname = "user"
+//        person.lastname = "userovich"
+//        person.phone = "88005553535"
         
         APIHelper.signUpRequest(person: person)
     }
@@ -47,6 +46,9 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.title = "Регистрация"
+        
      
         emailTextField.backgroundColor = UIColor(white: 1, alpha: 0)
         emailTextField.borderStyle = UITextBorderStyle(rawValue: 0)!

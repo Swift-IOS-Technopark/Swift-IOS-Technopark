@@ -25,6 +25,7 @@ class ListOfCrashesViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Список поломок"
         listOfCrashesTable.dataSource = self
         listOfCrashesTable.delegate = self
         listOfCrashesTable.tableFooterView = UIView() // delete excess separators

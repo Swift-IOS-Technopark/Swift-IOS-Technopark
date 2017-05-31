@@ -19,6 +19,7 @@ class ListOfHighOffersViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Список предложений"
         
         listOfOffersTable.dataSource = self
         listOfOffersTable.delegate = self

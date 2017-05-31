@@ -20,6 +20,7 @@ class CrashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Поломка"
         
 //        listOfOffersTable.dataSource = self
 //        listOfOffersTable.delegate = self

@@ -65,16 +65,16 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
             cell.errorLabel.textColor=UIColor.green
         }
         else{
-            cell.errorLabel.text="\(count) erors"
+            cell.errorLabel.text="\(count) ошибки"
             cell.errorLabel.textColor=UIColor.red
         }
         
         if person.vehicles[index].isAuction {
-            cell.marketLabel.text="Opened"
+            cell.marketLabel.text="Открыт"
             cell.marketLabel.textColor=UIColor.green
         }
         else{
-            cell.marketLabel.text="Closed"
+            cell.marketLabel.text="Закрыт"
             cell.marketLabel.textColor=UIColor.red
         }
         
