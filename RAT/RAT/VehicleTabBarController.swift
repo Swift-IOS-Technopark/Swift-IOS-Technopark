@@ -35,9 +35,9 @@ class VehicleTabBarController: UITabBarController {
             APIHelper.getListOfHistoryCrashesRequest(vehicle: vehicle!)*/
         case 1:
             let nav = self.viewControllers![1] as! UINavigationController
-            let destinationViewController = nav.viewControllers[0] as! ListOfOffersViewController
+            let destinationViewController = nav.viewControllers[0] as! ListOfHighOffersViewController
             destinationViewController.vehicle = vehicle!
-            APIHelper.getListsOfOffersAndServicesRequest(vehicle:vehicle!)
+            APIHelper.getListsOfHighLowOffersAndServicesRequest(vehicle:vehicle!)
         case 2:
             let nav = self.viewControllers![2] as! UINavigationController
             let destinationViewController = nav.viewControllers[0] as! AddRedactViewController

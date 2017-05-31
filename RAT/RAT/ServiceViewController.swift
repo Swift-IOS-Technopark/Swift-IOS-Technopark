@@ -48,6 +48,8 @@ class ServiceViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     var service = Service()
+    var offer = HighOffer()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,5 +108,18 @@ class ServiceViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func  locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         //
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toChat"{
+            let serviceController = segue.destination as! ChatViewController
+            serviceController.offer = offer
+}
+        if segue.identifier == "toConfirm"{
+            let serviceController = segue.destination as! ListOfLowOffersViewController
+            serviceController.offer = offer
+        }
+                
+        
     }
 }

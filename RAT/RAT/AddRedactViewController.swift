@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -39,7 +40,7 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
     
  
     
-    var vehicle: Vehicle? = nil
+    var vehicle = Vehicle()
     
     var person = Person()
     //MARK: Properties
@@ -49,7 +50,7 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
         person = DataBaseHelper.getPerson()
         
         //config buttons
-        if vehicle == nil{
+        if vehicle.id == 0{
             saveButton.isHidden = true
             deleteButton.isHidden = true
             addButton.isHidden = false
@@ -57,20 +58,20 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
         }
         else{
             
-            vinTextField.text = vehicle?.VIN
-            numberTextField.text = vehicle?.number
-            brandTextField.text = vehicle?.brand
-            modelTextField.text = vehicle?.model
-            yearTextField.text = vehicle?.year
-            marketSwitch.isOn = (vehicle?.isAuction)!
+            vinTextField.text = vehicle.VIN
+            numberTextField.text = vehicle.number
+            brandTextField.text = vehicle.brand
+            modelTextField.text = vehicle.model
+            yearTextField.text = vehicle.year
+            marketSwitch.isOn = vehicle.isAuction
             
             saveButton.isHidden = false
             deleteButton.isHidden = false
             addButton.isHidden = true
 
         }
-        if vehicle != nil {
-            if let image = vehicle!.picture as Data? {
+        if vehicle.id != 0 {
+            if let image = vehicle.picture as Data? {
                 photoImageView.image = UIImage.init(data: image)
             }
             else{
@@ -118,66 +119,73 @@ class AddRedactViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func addVehicle(_ sender: Any) {
         
-        vehicle = Vehicle()
-        vehicle?.VIN = vinTextField.text!
-        vehicle?.number = numberTextField.text!
-        vehicle?.brand = brandTextField.text!
-        vehicle?.model = modelTextField.text!
-        vehicle?.year = yearTextField.text!
-        vehicle?.owner = person
-        vehicle?.isAuction = marketSwitch.isOn
-        APIHelper.addVehiclesRequest(vehicle: vehicle!,user: person)
+        //vehicle = Vehicle()
+        vehicle.VIN = vinTextField.text!
+        vehicle.number = numberTextField.text!
+        vehicle.brand = brandTextField.text!
+        vehicle.model = modelTextField.text!
+        vehicle.year = yearTextField.text!
+        vehicle.owner = person
+        vehicle.isAuction = marketSwitch.isOn
+        //vehicle.id = 100
+        //vehicle.id = 200
+        APIHelper.addVehiclesRequest(vehicle: vehicle,user: person)
     }
     
     @IBAction func saveChangeOfVehicle(_ sender: Any) {
-        let id = vehicle?.id
+        let id = vehicle.id
         vehicle = Vehicle()
-        vehicle?.id = id!
-        vehicle?.VIN = vinTextField.text!
-        vehicle?.number = numberTextField.text!
-        vehicle?.brand = brandTextField.text!
-        vehicle?.model = modelTextField.text!
-        vehicle?.year = yearTextField.text!
-        vehicle?.owner = person
-        vehicle?.isAuction = marketSwitch.isOn
-        APIHelper.changeVehicleRequest(vehicle: vehicle!)
+        vehicle.id = id
+        vehicle.VIN = vinTextField.text!
+        vehicle.number = numberTextField.text!
+        vehicle.brand = brandTextField.text!
+        vehicle.model = modelTextField.text!
+        vehicle.year = yearTextField.text!
+        vehicle.owner = person
+        vehicle.isAuction = marketSwitch.isOn
+        APIHelper.changeVehicleRequest(vehicle: vehicle)
 //        vehicle?.picture = pictureData
-        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
+        pictureData = UIImagePNGRepresentation(photoImageView.image!) as! NSData
+        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle)
         
     }
     
     @IBAction func deleteVehicle(_ sender: Any) {
-        APIHelper.deleteVehicleRequest(vehicle: vehicle!)
+        let id = vehicle.id
+        print(id)
+        APIHelper.deleteVehicleRequest(vehicle: vehicle)
     }
     
     
     
     //call backs
     func addVehicleCallback(_ notification: NSNotification){
-        print("call_back")
-        let data = notification.userInfo
-        let id = data?["vehicle_id"] as! Int
-        vehicle?.id=id
-        DataBaseHelper.setVehicle(person: person, vehicle: vehicle! )
-        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle!)
-        APIHelper.getListOfVehiclesRequest()
+        let json = notification.userInfo
+        let id = json?["vehicle_id"] as! Int
+        let number = json?["number"] as! String
+        vehicle = Vehicle()
+        vehicle.id = id
+        vehicle.number = number
+        //DataBaseHelper.setVehicleID(vehicle: vehicle, id: id)
+        //DataBaseHelper.setVehicle(person: person, vehicle: vehicle )
+        DataBaseHelper.setVehicle(person: person, vehicle: vehicle)
+        DataBaseHelper.setVehiclePicture(data: pictureData, vehicle: vehicle)
+        //APIHelper.getListsOfVehiclesAndCrashesRequest()
         self.navigationController?.popViewController(animated: true)
         
     }
     
     func changeVehicleCallback(_ notification: NSNotification){
-        print("call_back")
-        DataBaseHelper.setVehicle(vehicle: vehicle! )
+        DataBaseHelper.setVehicle(vehicle: vehicle )
         
-        APIHelper.getListsOfVehiclesAndCrashesRequest()
+        //APIHelper.getListsOfVehiclesAndCrashesRequest()
         self.navigationController?.popViewController(animated: true)
         
     }
     
     func deleteVehicleCallback(_ notification: NSNotification){
-        print("call_back")
-        DataBaseHelper.deleteVehicle(vehicle: vehicle! )
-        APIHelper.getListsOfVehiclesAndCrashesRequest()
+        DataBaseHelper.deleteVehicle(vehicle: vehicle )
+        //APIHelper.getListsOfVehiclesAndCrashesRequest()
         //perfom seg for back
         //
         //self.navigationController?.popViewController(animated: true)

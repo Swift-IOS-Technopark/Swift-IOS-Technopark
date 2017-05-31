@@ -76,7 +76,7 @@ class ListOfCrashesViewController: UIViewController, UITableViewDataSource, UITa
         case .history:
             crash = historyCrashes[index]
         }
-        APIHelper.getListOfOffersRequest(crash: crash)
+        //APIHelper.getListOfOffersRequest(crash: crash)
         self.performSegue(withIdentifier: "fromListOfCrashesToCrashSegue", sender: crash)
     }
     

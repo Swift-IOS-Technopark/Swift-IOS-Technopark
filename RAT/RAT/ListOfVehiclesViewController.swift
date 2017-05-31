@@ -28,6 +28,11 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
         refreshControl.attributedTitle = NSAttributedString(string: "Идет обновление...")
         refreshControl.addTarget(self, action: #selector(ListOfVehiclesViewController.refresh), for: .valueChanged)
         listOfVehiclesTable.addSubview(refreshControl)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        APIHelper.getListsOfVehiclesAndCrashesRequest()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,9 +88,9 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
         let index = indexPath.row
         //person=DataBaseHelper.getPerson()
         var vehicle = person.vehicles[index]
-        vehicle = DataBaseHelper.getVehicle(id:person.vehicles[index].id)!
-        sendingVehicle=vehicle
-        APIHelper.getListOfActualCrashesRequest(vehicle: vehicle)
+        //vehicle = DataBaseHelper.getVehicle(id:person.vehicles[index].id)!
+        //sendingVehicle=vehicle
+        //APIHelper.getListOfActualCrashesRequest(vehicle: vehicle)
         self.performSegue(withIdentifier: "fromListOfVehicleToListOfCrashesSegue", sender: vehicle)
     }
  
@@ -108,6 +113,7 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
             let id = jsonVehicle["id"].intValue
             vehicleIDs.append(id)
         }
+        
         DataBaseHelper.deleteVehicles(vehicleIds: vehicleIDs)
         for jsonVehicle in jsonVehicles {
             let vehicle = DataBaseHelper.setVehicle(person: person, json: jsonVehicle)
@@ -126,9 +132,9 @@ class ListOfVehiclesViewController: UIViewController, UITableViewDelegate, UITab
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fromListOfVehicleToListOfCrashesSegue"{
             let barViewController = segue.destination as! VehicleTabBarController
-            _ = sender as? VehicleCell
-            barViewController.vehicle = sendingVehicle
-            print("sending vehicle id \(String(describing: sendingVehicle?.id))")
+            //_ = sender as? VehicleCell
+            barViewController.vehicle = sender as! Vehicle
+            //print("sending vehicle id \(String(describing: sendingVehicle?.id))")
             let nav = barViewController.viewControllers![0] as! UINavigationController
             let destinationViewController = nav.viewControllers[0] as! ListOfCrashesViewController
             destinationViewController.vehicle = sender as! Vehicle

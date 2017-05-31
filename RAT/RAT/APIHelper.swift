@@ -14,7 +14,7 @@ class APIHelper {
     
     
     static let SERVER_IP="https://bmsturat.herokuapp.com"
-    //static let SERVER_IP="http://192.168.1.43:8000"
+    //static let SERVER_IP="http://127.0.0.1:8000"
     
     
     static let SIGNUP_URL = "\(SERVER_IP)/api/signup"
@@ -30,7 +30,8 @@ class APIHelper {
     static let GET_SERVICE_URL = "\(SERVER_IP)/api/get_service"
     static let GET_SERVICE_REVIEWS_URL = "\(SERVER_IP)/api/get_service_reviews"
     static let SET_MARKET_MARKER_URL = "\(SERVER_IP)/api/set_market_marker"
-    
+    static let UPDATE_HIGH_OFFER = "\(SERVER_IP)/api/update_high_offer"
+    static let UPDATE_LOW_OFFER = "\(SERVER_IP)/api/update_low_offer"
     
     //hot download
     static let GET_LISTS_OF_VEHICLES_AND_CRASHES = "\(SERVER_IP)/api/get_lists_of_vehicles_and_crashes"
@@ -471,11 +472,35 @@ class APIHelper {
         
     }
     
+    class func updateHighOfferRequest(offer: HighOffer) -> Void {
+        for lowOffer in offer.lowOffers{
+            let parameters: Parameters = [
+                "id": lowOffer.id,
+                "is_chosen": lowOffer.isChosen
+            ]
+            print(parameters)
+            request(URL: UPDATE_LOW_OFFER, method: .post, parameters: parameters, onSuccess: updateHighOfferOnSucsess, onError: defaultOnError)
+        }
+        let parameters: Parameters = [
+            "id": offer.id,
+            "is_confirmed": offer.isConfirmed
+        ]
+        request(URL: UPDATE_HIGH_OFFER, method: .post, parameters: parameters, onSuccess: updateHighOfferOnSucsess, onError: defaultOnError)
+    }
+    
+    
+    class func updateHighOfferOnSucsess(json: JSON) -> Void{
+        print(json)
+        let code = json["code"].int!
+        if code != OK {
+            print("eror in updationg highOffer")
+        }
+    }
     
     // else code
     
     class func defaultOnSuccess(json: JSON) -> Void{
-        print(json)
+        //print(json)
     }
     
     class func defaultOnError(error: Any) -> Void {
